@@ -34,11 +34,9 @@ venv/
 ENV/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -48,6 +46,9 @@ wheels/
 .installed.cfg
 *.egg
 
+# Python lib directories only (not src/lib)
+backend/lib/
+
 # Database
 *.db
 *.sqlite
@@ -55,4 +56,3 @@ wheels/
 
 # Environment
 .env.local
-.env.production
