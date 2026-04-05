@@ -1,11 +1,12 @@
 import { useState, useMemo, useEffect } from "react";
-import { Search, Download, TrendingUp, TrendingDown, Activity, Brain, BarChart3, ChevronRight, Wifi, WifiOff } from "lucide-react";
+import { Search, Download, TrendingUp, TrendingDown, Activity, Brain, BarChart3, ChevronRight, Wifi, WifiOff, GitCompare } from "lucide-react";
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, ComposedChart, Area, ReferenceLine,
 } from "recharts";
 import { getCompanies, getStockData, getAIInsight, exportCSV, type Company, type AIInsight } from "@/lib/stockData";
 import { fetchCompanies, fetchStockData, checkBackendHealth, isBackendAvailable } from "@/lib/api";
+import CompareStocks from "./CompareStocks";
 
 /** Score badge color */
 function scoreColor(score: number): string {
@@ -36,6 +37,7 @@ export default function Dashboard() {
   const [days, setDays] = useState<30 | 90>(30);
   const [backendAvailable, setBackendAvailable] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showCompare, setShowCompare] = useState(false);
 
   // Check backend health and load companies
   useEffect(() => {
@@ -233,6 +235,13 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowCompare(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  <GitCompare className="w-3.5 h-3.5" />
+                  Compare
+                </button>
                 <div className="flex bg-secondary rounded-lg border border-border">
                   {([30, 90] as const).map((d) => (
                     <button
@@ -382,6 +391,15 @@ export default function Dashboard() {
           </div>
         )}
       </main>
+
+      {/* Compare Stocks Modal */}
+      {showCompare && (
+        <CompareStocks
+          companies={companies}
+          onClose={() => setShowCompare(false)}
+          backendAvailable={backendAvailable}
+        />
+      )}
     </div>
   );
 }
