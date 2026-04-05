@@ -1,0 +1,227 @@
+{
+  "info": {
+    "name": "Stock Data Intelligence API",
+    "description": "Complete API collection for TradeLens Stock Intelligence Dashboard",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Root",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": [""]
+        },
+        "description": "Get API information and available endpoints"
+      }
+    },
+    {
+      "name": "Get All Companies",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/companies",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["companies"]
+        },
+        "description": "Returns list of all available companies with current prices, changes, and intelligence scores"
+      }
+    },
+    {
+      "name": "Get Stock Data - 30 Days",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/data/RELIANCE.NS?days=30",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "RELIANCE.NS"],
+          "query": [
+            {
+              "key": "days",
+              "value": "30",
+              "description": "Number of days of historical data"
+            }
+          ]
+        },
+        "description": "Get 30 days of historical stock data for Reliance Industries"
+      }
+    },
+    {
+      "name": "Get Stock Data - 90 Days",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/data/TCS.NS?days=90",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "TCS.NS"],
+          "query": [
+            {
+              "key": "days",
+              "value": "90",
+              "description": "Number of days of historical data"
+            }
+          ]
+        },
+        "description": "Get 90 days of historical stock data for TCS"
+      }
+    },
+    {
+      "name": "Get Stock Data - All Available",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/data/INFY.NS?days=365",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "INFY.NS"],
+          "query": [
+            {
+              "key": "days",
+              "value": "365",
+              "description": "Maximum available historical data"
+            }
+          ]
+        },
+        "description": "Get all available historical data (365 days) for Infosys"
+      }
+    },
+    {
+      "name": "Get Summary - HDFC Bank",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/summary/HDFCBANK.NS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["summary", "HDFCBANK.NS"]
+        },
+        "description": "Get 52-week high, low, and average close for HDFC Bank"
+      }
+    },
+    {
+      "name": "Get Summary - ICICI Bank",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/summary/ICICIBANK.NS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["summary", "ICICIBANK.NS"]
+        },
+        "description": "Get summary statistics for ICICI Bank"
+      }
+    },
+    {
+      "name": "Compare IT Stocks - Infosys vs TCS",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/compare?symbol1=INFY.NS&symbol2=TCS.NS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["compare"],
+          "query": [
+            {
+              "key": "symbol1",
+              "value": "INFY.NS",
+              "description": "First stock symbol"
+            },
+            {
+              "key": "symbol2",
+              "value": "TCS.NS",
+              "description": "Second stock symbol"
+            }
+          ]
+        },
+        "description": "Compare performance of Infosys and TCS with correlation analysis"
+      }
+    },
+    {
+      "name": "Compare Banks - HDFC vs ICICI",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/compare?symbol1=HDFCBANK.NS&symbol2=ICICIBANK.NS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["compare"],
+          "query": [
+            {
+              "key": "symbol1",
+              "value": "HDFCBANK.NS"
+            },
+            {
+              "key": "symbol2",
+              "value": "ICICIBANK.NS"
+            }
+          ]
+        },
+        "description": "Compare HDFC Bank and ICICI Bank performance"
+      }
+    },
+    {
+      "name": "Compare Energy vs Telecom",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/compare?symbol1=RELIANCE.NS&symbol2=BHARTIARTL.NS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["compare"],
+          "query": [
+            {
+              "key": "symbol1",
+              "value": "RELIANCE.NS"
+            },
+            {
+              "key": "symbol2",
+              "value": "BHARTIARTL.NS"
+            }
+          ]
+        },
+        "description": "Compare Reliance (Energy) and Bharti Airtel (Telecom)"
+      }
+    },
+    {
+      "name": "Error Test - Invalid Symbol",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/data/INVALID.NS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "INVALID.NS"]
+        },
+        "description": "Test error handling with invalid stock symbol (should return 404)"
+      }
+    }
+  ]
+}

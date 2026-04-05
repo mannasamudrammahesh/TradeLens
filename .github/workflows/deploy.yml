@@ -1,0 +1,33 @@
+# Optional: GitHub Actions for automated deployment
+# This file is for reference - Vercel and Render auto-deploy from GitHub
+
+name: Deploy TradeLens
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build
+        run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      
+      # Vercel and Render will handle actual deployment
+      - name: Deployment Info
+        run: |
+          echo "Frontend: Deploy to Vercel"
+          echo "Backend: Deploy to Render"
